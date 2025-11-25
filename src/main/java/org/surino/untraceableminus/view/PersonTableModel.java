@@ -17,7 +17,7 @@ public class PersonTableModel extends AbstractTableModel {
         this.personRepository = personRepository;
     }
 
-    private final String[] columnNames = {"ID", "Name", "Surname", "Address", "Status"};
+    private final String[] columnNames = {"ID", "Name", "Surname", "Address", "Status", "Note"};
     private List<Person> data;
 
     public void setData(List<Person> people) {
@@ -57,6 +57,9 @@ public class PersonTableModel extends AbstractTableModel {
             case 4:
                 result = p.getStatus();
                 break;
+            case 5:
+                result = p.getNotes();
+                break;
             default:
                 result = null;
         }
@@ -86,6 +89,9 @@ public class PersonTableModel extends AbstractTableModel {
                 break;
             case 4:
                 p.setStatus((Status) value);
+                break;
+            case 5:
+                p.setNotes((String) value);
                 break;
             // Nessun default necessario, come nell'originale
         }

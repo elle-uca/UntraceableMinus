@@ -42,6 +42,7 @@ public class PersonPanel extends JPanel {
     private JTextField surnameField;
     private JTextField addressField;
     private JComboBox<Status> statusCombo;
+    private JTextField notesField;
     private JTextField searchField;
 
     private JTable table;
@@ -59,18 +60,21 @@ public class PersonPanel extends JPanel {
         setLayout(new MigLayout("fillx, insets 10", "[grow, fill]", "[]10[]10[grow]"));
 
         // 🔹 FORM PANEL
-        JPanel formPanel = new JPanel(new MigLayout("insets 0", "[][grow,fill]"));
+        JPanel formPanel = new JPanel(new MigLayout("insets 0", "[][grow,fill][][grow,fill]"));
         nameField = new JTextField(15);
         surnameField = new JTextField(15);
         addressField = new JTextField(20);
+        notesField = new JTextField(30);
         statusCombo = new JComboBox<>(Status.values());
 
         formPanel.add(new JLabel("Name:"));
-        formPanel.add(nameField, "wrap");
+        formPanel.add(nameField);
         formPanel.add(new JLabel("Surname:"));
         formPanel.add(surnameField, "wrap");
         formPanel.add(new JLabel("Address:"));
-        formPanel.add(addressField, "wrap");
+        formPanel.add(addressField);
+        formPanel.add(new JLabel("Notes:")); 
+        formPanel.add(notesField, "wrap");
         formPanel.add(new JLabel("Status:"));
         formPanel.add(statusCombo, "wrap");
 
@@ -174,6 +178,7 @@ public class PersonPanel extends JPanel {
         String name = nameField.getText().trim();
         String surname = surnameField.getText().trim();
         String address = addressField.getText().trim();
+        String notes = notesField.getText().trim();
         Status status = (Status) statusCombo.getSelectedItem();
 
         if (name.isEmpty() || surname.isEmpty()) {
@@ -212,6 +217,7 @@ public class PersonPanel extends JPanel {
         nameField.setText("");
         surnameField.setText("");
         addressField.setText("");
+        notesField.setText("");
         statusCombo.setSelectedIndex(0);
         loadPeople();
     }
