@@ -1,6 +1,8 @@
 package org.surino.untraceableminus.view;
 
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,8 +11,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -108,7 +112,57 @@ public class PersonPanel extends JPanel {
         table = new JTable(tableModel);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setAutoCreateRowSorter(true);
+        
+     // --- Popup menu ---
+        JPopupMenu popupMenu = new JPopupMenu();
 
+        // esempio: elimina persona
+        JMenuItem deleteItem = new JMenuItem("Elimina");
+        deleteItem.addActionListener(e -> deletePerson());
+         popupMenu.add(deleteItem);
+         
+         JMenuItem swapItem = new JMenuItem("Scambia Nome/Cognome");
+         swapItem.addActionListener(e -> {
+             int row = table.getSelectedRow();
+             if (row != -1) {
+                 int modelRow = table.convertRowIndexToModel(row);
+                 Person p = tableModel.getPersonAt(modelRow);
+
+                 // swap
+                 String tmp = p.getName();
+                 p.setName(p.getSurname());
+                 p.setSurname(tmp);
+
+                 // notifica il modello che i dati sono cambiati
+                 personRepository.save(p);;
+             }
+         });
+         popupMenu.add(swapItem);
+         
+         
+        
+     // collega il menu alla tabella
+        table.setComponentPopupMenu(popupMenu);
+        
+     // opzionale: seleziona automaticamente la riga con il click destro
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (e.isPopupTrigger()) selectRow(e);
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) selectRow(e);
+            }
+            private void selectRow(MouseEvent e) {
+                int row = table.rowAtPoint(e.getPoint());
+                if (row != -1) {
+                    table.setRowSelectionInterval(row, row);
+                }
+            }
+        });
+        
+        
         JComboBox<Status> comboBoxEditor = new JComboBox<>(Status.values());
         table.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(comboBoxEditor));
 
