@@ -67,10 +67,11 @@ public class PersonPanel extends JPanel {
         notesField = new JTextField(30);
         statusCombo = new JComboBox<>(Status.values());
 
-        formPanel.add(new JLabel("Name:"));
-        formPanel.add(nameField);
+
         formPanel.add(new JLabel("Surname:"));
-        formPanel.add(surnameField, "wrap");
+        formPanel.add(surnameField);
+        formPanel.add(new JLabel("Name:"));
+        formPanel.add(nameField, "wrap");
         formPanel.add(new JLabel("Address:"));
         formPanel.add(addressField);
         formPanel.add(new JLabel("Notes:")); 
@@ -168,7 +169,7 @@ public class PersonPanel extends JPanel {
         
         
         JComboBox<Status> comboBoxEditor = new JComboBox<>(Status.values());
-        table.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(comboBoxEditor));
+        table.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(comboBoxEditor));
 
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, "grow, push");
@@ -212,7 +213,7 @@ public class PersonPanel extends JPanel {
             }
         }
 
-        personRepository.save(new Person(name, surname, address, status));
+        personRepository.save(new Person(name, surname, address,  notes, status));
 
         nameField.setText("");
         surnameField.setText("");

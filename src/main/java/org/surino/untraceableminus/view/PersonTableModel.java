@@ -17,7 +17,7 @@ public class PersonTableModel extends AbstractTableModel {
         this.personRepository = personRepository;
     }
 
-    private final String[] columnNames = {"ID", "Name", "Surname", "Address", "Status", "Note"};
+    private final String[] columnNames = { "Name", "Surname", "Address", "Status", "Note"};
     private List<Person> data;
 
     public void setData(List<Person> people) {
@@ -43,23 +43,21 @@ public class PersonTableModel extends AbstractTableModel {
 
         switch (columnIndex) {
             case 0:
-                result = p.getId();
-                break;
-            case 1:
                 result = p.getName();
                 break;
-            case 2:
+            case 1:
                 result = p.getSurname();
                 break;
-            case 3:
+            case 2:
                 result = p.getAddress();
                 break;
-            case 4:
+            case 3:
                 result = p.getStatus();
                 break;
-            case 5:
+            case 4:
                 result = p.getNotes();
                 break;
+
             default:
                 result = null;
         }
@@ -67,7 +65,7 @@ public class PersonTableModel extends AbstractTableModel {
     }
 
     @Override public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex > 0;
+        return true;
     }
 
     /**
@@ -78,19 +76,19 @@ public class PersonTableModel extends AbstractTableModel {
         Person p = data.get(rowIndex);
 
         switch (columnIndex) {
-            case 1:
+            case 0:
                 p.setName((String) value);
-                break; // 'break' è fondamentale in Java 8 per evitare il "fall-through"
-            case 2:
+                break; 
+            case 1:
                 p.setSurname((String) value);
                 break;
-            case 3:
+            case 2:
                 p.setAddress((String) value);
                 break;
-            case 4:
+            case 3:
                 p.setStatus((Status) value);
                 break;
-            case 5:
+            case 4:
                 p.setNotes((String) value);
                 break;
             // Nessun default necessario, come nell'originale
@@ -106,10 +104,8 @@ public class PersonTableModel extends AbstractTableModel {
         Class<?> columnClass; // Variabile per il ritorno
 
         switch (columnIndex) {
-            case 0:
-                columnClass = Long.class;
-                break;
-            case 4:
+
+            case 3:
                 columnClass = Status.class;
                 break;
             default:
