@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import org.surino.untraceableminus.PersonRepository;
 import org.surino.untraceableminus.model.Person;
+import org.surino.untraceableminus.model.PersonRepository;
 import org.surino.untraceableminus.model.Status;
 
 @SuppressWarnings("serial")

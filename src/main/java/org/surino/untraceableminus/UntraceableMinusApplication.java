@@ -6,8 +6,9 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.surino.untraceableminus.view.BootProgressListener;
 import org.surino.untraceableminus.view.MainFrame;
-import org.surino.untraceableminus.view.SplashScreenR;
+import org.surino.untraceableminus.view.SplashScreen;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -17,7 +18,7 @@ public class UntraceableMinusApplication {
 	public static void main(String[] args) {
 		FlatLightLaf.setup();
         // 1) Mostra lo splash
-        SplashScreenR splash = new SplashScreenR();
+        SplashScreen splash = new SplashScreen();
         splash.showSplash();
 
 		 ConfigurableApplicationContext context =

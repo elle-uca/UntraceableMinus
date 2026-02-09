@@ -16,12 +16,12 @@ import javax.swing.SwingUtilities;
 import com.formdev.flatlaf.util.Animator;
 
 @SuppressWarnings("serial")
-public class SplashScreenR extends JWindow {
+public class SplashScreen extends JWindow {
 
     private final JProgressBar progressBar;
     private final JLabel statusLabel;
 
-    public SplashScreenR() {
+    public SplashScreen() {
         // Sfondo trasparente per permettere l'opacity
         setBackground(new Color(0, 0, 0, 0));
 

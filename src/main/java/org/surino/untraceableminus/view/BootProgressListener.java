@@ -1,5 +1,5 @@
 // BootProgressListener
-package org.surino.untraceableminus;
+package org.surino.untraceableminus.view;
 
 import org.springframework.boot.context.event.ApplicationContextInitializedEvent;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
@@ -9,13 +9,12 @@ import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.boot.context.event.ApplicationStartingEvent;
 import org.springframework.boot.context.event.SpringApplicationEvent;
 import org.springframework.context.ApplicationListener;
-import org.surino.untraceableminus.view.SplashScreenR;
 
 public class BootProgressListener implements ApplicationListener<SpringApplicationEvent> {
 
-    private final SplashScreenR splash;
+    private final SplashScreen splash;
 
-    public BootProgressListener(SplashScreenR splash) {
+    public BootProgressListener(SplashScreen splash) {
         this.splash = splash;
     }
 

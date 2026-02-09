@@ -1,6 +1,5 @@
-package org.surino.untraceableminus;
+package org.surino.untraceableminus.model;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.surino.untraceableminus.model.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {}

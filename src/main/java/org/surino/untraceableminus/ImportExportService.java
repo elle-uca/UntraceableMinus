@@ -26,6 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.springframework.stereotype.Service;
 import org.surino.untraceableminus.model.Person;
+import org.surino.untraceableminus.model.PersonRepository;
 import org.surino.untraceableminus.model.Status;
 
 @Service

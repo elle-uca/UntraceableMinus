@@ -25,8 +25,8 @@ import javax.swing.event.DocumentListener;
 
 import org.springframework.stereotype.Component;
 import org.surino.untraceableminus.ImportExportService;
-import org.surino.untraceableminus.PersonRepository;
 import org.surino.untraceableminus.model.Person;
+import org.surino.untraceableminus.model.PersonRepository;
 import org.surino.untraceableminus.model.Status;
 
 import net.miginfocom.swing.MigLayout;
